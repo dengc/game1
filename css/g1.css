@@ -1,0 +1,67 @@
+.moving, .replay, .start_again{
+  height: 55px;
+  width: 100px;
+  background: red;
+  border: 2px solid;
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  cursor: pointer;
+  position: absolute;
+  left: 46%;
+  top:50%;
+}
+.replay{
+  display: none;
+  top:60%;
+  width: 150px;
+}
+.start_again{
+  display: none;
+  width: 250px;
+  left: 43%;
+}
+.showtime{
+  font-size: 25px;
+  text-align: center;
+  margin: 1% 45% auto;
+  border: 4px dashed red;
+  display: none;
+}
+.welcome{
+  text-align: center;
+  margin-top: 5%;
+}
+.congrats{
+  display: none;
+  text-align: center;
+  margin-top: 12%;
+}
+
+#congrats_word, #welcome_word{
+  color: red;
+  font-size: 60px;
+  font-family: fantasy;
+  font-weight: bold;
+}
+#click_word{
+  font-size: 20px;
+}
+input{
+  width: 60px;
+}
+#congrats_time{
+  font-size: 40px;
+}
+#time{
+  color: red;
+  font-size: 50px;
+  font-family: fantasy;
+  font-weight: bold;
+}
+#count{
+  color: blue;
+  font-size: 50px;
+  font-family: fantasy;
+  font-weight: bold;
+}
