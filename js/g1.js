@@ -123,7 +123,7 @@ function chart() {
 
     var option = {
         title: {
-            text: 'Numbers of Divs --- time'
+            text: 'time --- Numbers of Divs'
         },
         xAxis: {
             data: divs
@@ -134,12 +134,23 @@ function chart() {
             type: 'bar',
             color: ['#3398DB'],
             barWidth: '30%',
-            data: times
+            data: times,
+            animationDelay: function(idx) {
+                return idx * 10 + 50;
+            }
         }, {
             name: 'time',
             type: 'line',
-            data: times
-        }]
+            data: times,
+            animationDelay: function(idx) {
+                return idx * 10;
+            }
+        }],
+        animationEasing: 'elasticOut',
+        animationDelayUpdate: function(idx) {
+            return idx * 5;
+        }
+
     };
 
     myChart.setOption(option);
