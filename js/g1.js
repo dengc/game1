@@ -1,4 +1,8 @@
 var num = -1;
+var nums = 0;
+
+var divs = [];
+var times = [];
 
 function Watch() {
     var span = document.createElement("sapn");
@@ -25,7 +29,6 @@ function Watch() {
             clearInterval(w);
         } //到过5分钟时停止
     }, 10); //每1000毫秒即1秒执行一次此函数
-
     $(".showtime").html(span); //显示到页面上
 }
 
@@ -36,9 +39,12 @@ $(".moving").click(function() {
 $(".replay").click(function() {
     $(".congrats").css("display", "none");
     $(".welcome").css("display", "block");
+    $("#bar").css("display", "block");
     $("#welcome_word").html("Welcome to play again!");
     $(this).hide();
     $(".start_again").show();
+    chart();
+    //alert(divs.pop());
 });
 
 $(".start_again").click(function() {
@@ -49,7 +55,7 @@ $(".start_again").click(function() {
 
 function change() {
     var xmin = 0;
-    var xmax = 1400;
+    var xmax = 1000;
     var ymin = 0;
     var ymax = 640;
     var hmax = 100;
@@ -84,6 +90,7 @@ function startGame() {
     $(".moving").css("font-size", 0);
     $(".showtime").css("display", "block");
     $(".welcome").hide();
+    $("#bar").css("display", "none");
     change();
     num += 1;
     if (num == 0) {
@@ -98,8 +105,42 @@ function startGame() {
         $(".congrats").css("display", "block");
         $("#time").html($(".showtime").text());
         $("#count").html(count);
+        divs.push(parseInt(count));
+        m = parseInt($(".showtime").text().substring(0, 2));
+        s = parseInt($(".showtime").text().split(":")[1].substring(0, 2));
+        ms = parseInt($(".showtime").text().split(".")[1]);
+        tt = ms / 100 + s + 60 * m;
+        times[nums] = tt;
         $(".showtime").css("display", "none");
         $(".replay").css("display", "block");
         num = -1;
+        nums += 1;
     }
+}
+
+function chart() {
+    var myChart = echarts.init(document.getElementById('bar'));
+
+    var option = {
+        title: {
+            text: 'Numbers of Divs --- time'
+        },
+        xAxis: {
+            data: divs
+        },
+        yAxis: [{}],
+        series: [{
+            name: 'time',
+            type: 'bar',
+            color: ['#3398DB'],
+            barWidth: '30%',
+            data: times
+        }, {
+            name: 'time',
+            type: 'line',
+            data: times
+        }]
+    };
+
+    myChart.setOption(option);
 }

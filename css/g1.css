@@ -20,6 +20,7 @@
   display: none;
   width: 250px;
   left: 43%;
+  top:35%;
 }
 .showtime{
   font-size: 25px;
@@ -64,4 +65,10 @@ input{
   font-size: 50px;
   font-family: fantasy;
   font-weight: bold;
+}
+#bar{
+    display: none;
+    width: 400px;
+    height: 200px;
+    text-align: center;
 }
