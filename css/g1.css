@@ -84,3 +84,9 @@ input{
     bottom: 10%;
     right: 13%;
 }
+#copyright{
+    font-size: 14px;
+    position: absolute;
+    bottom: 4%;
+    left: 42%;
+}
