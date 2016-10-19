@@ -3,6 +3,8 @@ var nums = 0;
 
 var divs = [];
 var times = [];
+var no_xx = [];
+var avg_time = [];
 
 function Watch() {
     var span = document.createElement("sapn");
@@ -40,6 +42,7 @@ $(".replay").click(function() {
     $(".congrats").css("display", "none");
     $(".welcome").css("display", "block");
     $("#bar").css("display", "block");
+    $("#bar2").css("display", "block");
     $("#welcome_word").html("Welcome to play again!");
     $(this).hide();
     $(".start_again").show();
@@ -91,6 +94,7 @@ function startGame() {
     $(".showtime").css("display", "block");
     $(".welcome").hide();
     $("#bar").css("display", "none");
+    $("#bar2").css("display", "none");
     change();
     num += 1;
     if (num == 0) {
@@ -115,11 +119,14 @@ function startGame() {
         $(".replay").css("display", "block");
         num = -1;
         nums += 1;
+        no_xx.push(nums);
+        avg_time.push(tt / parseInt(count));
     }
 }
 
 function chart() {
     var myChart = echarts.init(document.getElementById('bar'));
+    var myChart2 = echarts.init(document.getElementById('bar2'));
 
     var option = {
         title: {
@@ -150,8 +157,38 @@ function chart() {
         animationDelayUpdate: function(idx) {
             return idx * 5;
         }
-
     };
 
+    var option2 = {
+        title: {
+            text: 'avg.time --- No.xx'
+        },
+        xAxis: {
+            data: no_xx
+        },
+        yAxis: [{}],
+        series: [{
+            name: 'avg.time',
+            type: 'bar',
+            color: ['#EEEE00'],
+            barWidth: '30%',
+            data: avg_time,
+            animationDelay: function(idx) {
+                return idx * 10 + 50;
+            }
+        }, {
+            name: 'avg.time',
+            type: 'line',
+            data: avg_time,
+            animationDelay: function(idx) {
+                return idx * 10;
+            }
+        }],
+        animationEasing: 'elasticOut',
+        animationDelayUpdate: function(idx) {
+            return idx * 5;
+        }
+    };
     myChart.setOption(option);
+    myChart2.setOption(option2);
 }
